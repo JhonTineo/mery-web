@@ -1,0 +1,27 @@
+---
+interface Props {
+  name: 'mic' | 'arrow' | 'play' | 'phone' | 'apps' | 'battery' | 'check' | 'ear' | 'shield' | 'plus' | 'github' | 'android' | 'volume' | 'heart' | 'chevron' | 'whatsapp';
+  size?: number;
+  class?: string;
+}
+const { name, size = 24, class: className } = Astro.props;
+const paths: Record<string, string> = {
+  mic: '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/>',
+  arrow: '<path d="M5 12h14m-6-6 6 6-6 6"/>',
+  play: '<path d="m9 5 11 7-11 7Z"/>',
+  phone: '<path d="m8 3 3 5-3 3c2 3 3 4 6 5l3-3 4 3c0 4-2 6-5 5C8 19 4 15 2 7 1 4 4 2 8 3Z"/>',
+  apps: '<rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="15" y="3" width="6" height="6" rx="1.5"/><rect x="3" y="15" width="6" height="6" rx="1.5"/><rect x="15" y="15" width="6" height="6" rx="1.5"/>',
+  battery: '<rect x="2" y="6" width="18" height="12" rx="3"/><path d="M23 10v4M6 10v4m4-4v4m4-4v4"/>',
+  check: '<path d="m5 12 4 4L19 6"/>',
+  ear: '<path d="M6 9a6 6 0 0 1 12 0c0 4-4 4-4 8a4 4 0 0 1-8 0m4-8a2 2 0 0 1 4 0c0 2-3 2-3 5"/>',
+  shield: '<path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6Z"/><path d="m8 12 3 3 5-6"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  github: '<path d="M9 19c-4 1-4-2-6-2m12 5v-4c0-1 .1-2-.5-2.5 4-.5 6.5-2 6.5-6.5a5 5 0 0 0-1.5-3.5A5 5 0 0 0 19 2s-2 0-4 1a13 13 0 0 0-6 0C7 2 5 2 5 2a5 5 0 0 0-.5 3.5A5 5 0 0 0 3 9c0 4.5 2.5 6 6.5 6.5C9 16 9 17 9 18v4"/>',
+  android: '<path d="m7 4-2-3m12 3 2-3M3 11a9 9 0 0 1 18 0Zm0 3v5m18-5v5M6 14v7h12v-7M9 21v2m6-2v2"/><path d="M8 7h.01M16 7h.01"/>',
+  volume: '<path d="m11 4-6 5H2v6h3l6 5Zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>',
+  heart: '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>',
+  chevron: '<path d="m9 5 7 7-7 7"/>',
+  whatsapp: '<path d="M21 11.5a9 9 0 0 1-13.3 8L2 21l1.5-5.5A9 9 0 1 1 21 11.5Z"/><path d="m8 7 2 3-1 1c1 2 2 3 4 3l1-1 3 2c-1 4-9 0-10-5 0-2 1-3 1-3Z"/>',
+};
+---
+<svg class={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={paths[name]} />

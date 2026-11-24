@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Wave from '../components/Wave.astro';
+import { mery } from '../config';
+
+const capabilities = [
+  { icon: 'phone' as const, title: 'Más cerca de los tuyos.', description: 'Busca un contacto y pide una llamada. Mery te pregunta antes de iniciarla.', quote: '“Llama a Ana”', label: 'Llamadas y contactos' },
+  { icon: 'apps' as const, title: 'Tus apps, a una frase.', description: 'Abre las aplicaciones instaladas en tu celular sin recorrer sus menús.', quote: '“Abre YouTube”', label: 'Aplicaciones' },
+  { icon: 'volume' as const, title: 'Lo cotidiano, más fácil.', description: 'Consulta la batería, pregunta la hora o ajusta el volumen con tu voz.', quote: '“¿Cuánta batería tengo?”', label: 'Tu celular' },
+  { icon: 'heart' as const, title: 'Una conversación que continúa.', description: 'Guarda preferencias, personas cercanas y pendientes para retomarlos después.', quote: '“¿Qué tengo pendiente?”', label: 'Memoria personal' },
+];
+
+const faqs = [
+  { question: '¿Qué es MeryApp?', answer: 'Mery es un agente de voz para el celular. Entiende peticiones en lenguaje natural y utiliza herramientas del teléfono para realizar acciones. El proyecto nace pensando en la autonomía de las personas ciegas.' },
+  { question: '¿En qué celulares funciona?', answer: 'La aplicación se está desarrollando para Android. Funciones como las llamadas, los contactos y el micrófono necesitan los permisos correspondientes del dispositivo.' },
+  { question: '¿Puedo descargar Mery ahora?', answer: mery.downloadUrl ? 'Ya puedes acceder a la versión de Android desde el botón de descarga de esta página. Revisa las instrucciones de la versión antes de instalarla.' : 'El proyecto está en desarrollo y todavía no hay una descarga pública enlazada en esta web. Puedes consultar el repositorio para conocer su avance y las instrucciones para ejecutarlo.' },
+  { question: '¿Mery necesita conexión a internet?', answer: 'El agente utiliza un proveedor de inteligencia artificial que se configura en la aplicación. La conexión necesaria y el tratamiento de las peticiones dependen de ese proveedor. No se presenta como una aplicación que funcione completamente sin internet.' },
+  { question: '¿Ya puede leer y enviar mensajes de WhatsApp?', answer: 'Mery puede abrir WhatsApp si está instalado, como otras aplicaciones. La integración para leer, buscar y enviar mensajes desde la conversación con Mery sigue en desarrollo.' },
+  { question: '¿La demo utiliza mi micrófono?', answer: 'No. Es una simulación interactiva con ejemplos escritos. Esta página no solicita acceso a tu micrófono, no graba audio y no controla tu teléfono.' },
+];
+---
+<Layout>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="MeryApp, inicio"><img src="/mery-icon.svg" width="42" height="42" alt="" /><span>Mery<span class="brand-app">App</span><span class="brand-dot">.</span></span></a>
+      <nav class="desktop-nav" aria-label="Navegación principal">
+        <a href="#que-hace">Qué hace</a><a href="#como-funciona">Cómo funciona</a><a href="#accesibilidad">Accesibilidad</a><a href="#preguntas">Preguntas</a>
+      </nav>
+      <a class="button button-small header-cta" href="#demo">Conoce a Mery <Icon name="arrow" size={17} /></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú"><span></span><span></span></button>
+    </div>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Navegación móvil" hidden>
+      <a href="#que-hace">Qué hace</a><a href="#como-funciona">Cómo funciona</a><a href="#accesibilidad">Accesibilidad</a><a href="#preguntas">Preguntas frecuentes</a><a href="#demo">Conoce a Mery</a>
+    </nav>
+    <noscript><style>.menu-toggle{display:none!important}@media(max-width:1024px){.mobile-nav[hidden]{display:block!important}}</style></noscript>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-halo" aria-hidden="true"></div>
+      <svg class="hero-ribbons" viewBox="0 0 1440 660" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="ribbon" x1="0" x2="1"><stop stop-color="#ff3b4e" stop-opacity="0"/><stop offset=".6" stop-color="#ff3b4e" stop-opacity=".5"/><stop offset="1" stop-color="#ff8992" stop-opacity="0"/></linearGradient></defs><path d="M-80 510C220 180 360 800 740 500s440-400 800-100"/><path d="M-80 530C220 210 360 820 740 520s440-400 800-100"/><path d="M-80 550C220 240 360 840 740 540s440-400 800-100"/></svg>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="availability"><span></span> Un agente de voz para Android</p>
+          <h1 id="hero-title">Di lo que<br />quieres hacer<span class="coral-dot">.</span></h1>
+          <p class="hero-description">Tu celular tiene mucho que ofrecer.<br class="desktop-break" /> Mery te ayuda a descubrirlo con tu voz.</p>
+          <p class="hero-detail">Llama, abre tus apps y resuelve lo cotidiano.<br />Pensado para una vida con más autonomía.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#demo"><Icon name="play" size={19} /> Ver a Mery en acción</a><a class="text-link" href="#que-hace">Descubre qué puede hacer <Icon name="arrow" size={18} /></a></div>
+          <div class="hero-note"><Icon name="ear" size={19} /><span>Diseñado pensando en las personas ciegas.</span></div>
+        </div>
+        <div class="phone-scene" aria-label="Vista conceptual de Mery en un celular Android">
+          <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
+          <div class="phone-shadow" aria-hidden="true"></div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-status" aria-hidden="true"><span>10:30</span><span class="camera"></span><span class="status-icons">▴ ▰</span></div>
+              <div class="phone-brand"><img src="/mery-icon.svg" width="24" height="24" alt="" /><span>Mery</span></div>
+              <div class="phone-main">
+                <span class="phone-greeting">Hola, estoy aquí para ti.</span>
+                <button class="mic-button" type="button" aria-label="Reproducir un ejemplo de Mery"><Icon name="mic" size={65} /></button>
+                <Wave />
+                <p class="phone-listening" id="phone-status">Te escucho</p>
+                <p class="phone-hint">Tu voz es el comienzo.</p>
+              </div>
+              <div class="phone-bottom"><span class="phone-bottom-dot"></span> Una forma más tuya de usar tu celular.</div>
+              <span class="phone-home" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="voice-bubble bubble-call"><span class="bubble-icon"><Icon name="mic" size={20} /></span><span>“Llama a Ana”</span><span class="bubble-spark" aria-hidden="true">✦</span></div>
+          <div class="voice-bubble bubble-app"><span class="bubble-icon"><Icon name="mic" size={20} /></span><span>“Abre YouTube”</span></div>
+          <span class="scene-caption">Menos pasos. Más posibilidades.</span>
+          <p class="sr-only" id="hero-demo-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="container integrations-strip">
+        <p>Tu voz, con las apps<br /><strong>que ya conoces.</strong></p>
+        <div class="integration-item"><span class="integration-logo whatsapp"><Icon name="whatsapp" size={27} /></span><span>WhatsApp<small>Apertura de la app</small></span></div>
+        <div class="integration-item"><span class="integration-logo google" aria-hidden="true">G</span><span>Google<small>Apertura de la app</small></span></div>
+        <div class="integration-item"><span class="integration-logo youtube" aria-hidden="true"><Icon name="play" size={23} /></span><span>YouTube<small>Apertura de la app</small></span></div>
+        <div class="integration-item"><span class="integration-logo calls"><Icon name="phone" size={26} /></span><span>Llamadas<small>Con tu confirmación</small></span></div>
+      </div>
+    </section>
+
+    <section class="section capabilities container" id="que-hace" aria-labelledby="capabilities-title">
+      <div class="section-heading"><div><p class="section-kicker">Un poco de ayuda. Mucha autonomía.</p><h2 id="capabilities-title">Lo que quieres hacer,<br />más cerca de tu voz.</h2></div><p>No necesitas aprender comandos.<br />Solo hablar como tú hablas.</p></div>
+      <div class="capability-grid">{capabilities.map((item) => <article class="capability-card"><div class="card-top"><span class="feature-icon"><Icon name={item.icon} size={24} /></span><span>{item.label}</span></div><h3>{item.title}</h3><p>{item.description}</p><div class="command-example"><Icon name="mic" size={16} />{item.quote}</div></article>)}</div>
+      <div class="development-note"><Icon name="whatsapp" size={21} /><p><strong>Y seguimos ampliando la conversación.</strong> La lectura y el envío de mensajes de WhatsApp están en desarrollo.</p><span class="status-tag">En desarrollo</span></div>
+    </section>
+
+    <section class="demo-section section" id="demo" aria-labelledby="demo-title">
+      <div class="container demo-grid">
+        <div class="demo-intro"><p class="section-kicker">Así se siente usar Mery</p><h2 id="demo-title">Una frase.<br />Y ya estás<br />un paso más cerca.</h2><p>Elige un ejemplo y descubre cómo una conversación se convierte en una acción.</p><div class="demo-options" role="group" aria-label="Elige un ejemplo"><button type="button" class="demo-option active" data-demo="call" aria-pressed="true"><Icon name="phone" size={20} /><span>Llamar a alguien</span><Icon name="chevron" size={17} /></button><button type="button" class="demo-option" data-demo="app" aria-pressed="false"><Icon name="apps" size={20} /><span>Abrir una aplicación</span><Icon name="chevron" size={17} /></button><button type="button" class="demo-option" data-demo="battery" aria-pressed="false"><Icon name="battery" size={20} /><span>Consultar la batería</span><Icon name="chevron" size={17} /></button></div></div>
+        <div class="conversation-panel">
+          <div class="conversation-top"><span><img src="/mery-icon.svg" width="32" height="32" alt="" /> Una conversación con Mery</span><span class="simulation-tag">Demo interactiva</span></div>
+          <div class="conversation-body" id="conversation" aria-live="polite" aria-atomic="true"><div class="message message-user"><span>Tú</span><p id="demo-prompt">Mery, llama a Ana.</p><Wave /></div><div class="message message-mery"><span><img src="/mery-icon.svg" width="21" height="21" alt="" /> Mery</span><p id="demo-response">Encontré a Ana en tus contactos. ¿Quieres que la llame?</p></div><div class="demo-result"><span class="result-icon"><Icon name="shield" size={21} /></span><div><strong id="demo-result-title">Tú tienes la última palabra.</strong><p id="demo-result-text">Mery pide tu confirmación antes de iniciar la llamada.</p></div></div></div>
+          <div class="conversation-bottom"><Icon name="mic" size={16} /><p>Simulación ilustrativa. No usa tu micrófono ni ejecuta acciones.</p><button class="replay-demo" type="button" aria-label="Repetir ejemplo">Repetir <span aria-hidden="true">↻</span></button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container how-section" id="como-funciona" aria-labelledby="how-title"><div class="center-heading"><p class="section-kicker">Natural desde el primer momento</p><h2 id="how-title">Tú hablas. Mery se encarga.</h2><p>Una conversación sencilla para conectar contigo y con tu celular.</p></div><ol class="steps"><li><span class="step-number">01</span><h3>Dilo con tus palabras.</h3><p>Pide lo que necesitas, como se lo contarías a alguien de confianza.</p></li><li><span class="step-number">02</span><h3>Mery encuentra el camino.</h3><p>Interpreta tu petición y utiliza las herramientas disponibles en tu teléfono.</p></li><li><span class="step-number">03</span><h3>La conversación continúa.</h3><p>Recibe una respuesta y, cuando hace falta, confirma la acción con tu voz.</p></li></ol></section>
+
+    <section class="section container" id="accesibilidad" aria-labelledby="access-title"><div class="accessibility-panel"><div class="access-art" aria-hidden="true"><div class="access-circle"><img src="/mery-icon.svg" width="98" height="98" alt="" /></div><Wave /><span>Tu voz abre posibilidades.</span></div><div class="access-copy"><p class="section-kicker">La autonomía es el punto de partida</p><h2 id="access-title">La tecnología debe<br />acercarte a tu mundo.</h2><p>Mery nace pensando en las personas ciegas. En llamar a alguien, abrir una app o consultar algo del celular con una conversación, a tu manera.</p><ul class="access-features"><li><Icon name="ear" size={21} /><span>La voz como forma principal de interacción.</span></li><li><Icon name="shield" size={21} /><span>Confirmación antes de las acciones que lo requieren.</span></li><li><Icon name="heart" size={21} /><span>Un proyecto que pone la autonomía en el centro.</span></li></ul></div></div></section>
+
+    <section class="section container faq-section" id="preguntas" aria-labelledby="faq-title"><div class="faq-intro"><p class="section-kicker">Conoce un poco más</p><h2 id="faq-title">Es natural<br />tener preguntas.</h2><p>Aquí empieza la conversación.</p></div><div class="faq-list">{faqs.map((faq) => <details><summary>{faq.question}<span class="faq-plus"><Icon name="plus" size={20} /></span></summary><p>{faq.answer}</p></details>)}</div></section>
+
+    <section class="container final-section" id="proyecto" aria-labelledby="final-title"><div class="final-cta"><img src="/mery-icon.svg" width="64" height="64" alt="" /><p class="section-kicker">Tu voz. Tu celular. Tu autonomía.</p><h2 id="final-title">Hay mucho por hacer.<br />Empieza con tu voz.</h2><p>Mery está dando sus primeros pasos.<br />Conoce el proyecto y acompaña lo que viene.</p><a class="button button-primary" href={mery.downloadUrl || mery.repository}><Icon name={mery.downloadUrl ? 'android' : 'github'} size={20} />{mery.downloadUrl ? 'Descargar para Android' : 'Explorar el proyecto'}<Icon name="arrow" size={19} /></a><span class="release-note"><span></span>{mery.downloadUrl ? 'Versión para Android' : 'En desarrollo para Android · Descarga pública próximamente'}</span></div></section>
+  </main>
+  <footer class="site-footer container"><div class="footer-main"><a class="brand" href="#inicio" aria-label="MeryApp, volver al inicio"><img src="/mery-icon.svg" width="36" height="36" alt="" /><span>Mery<span class="brand-app">App</span><span class="brand-dot">.</span></span></a><p>Una forma más tuya de usar tu celular.</p><nav aria-label="Enlaces del pie de página"><a href={mery.repository}>Proyecto en GitHub <Icon name="arrow" size={15} /></a><a href="/privacidad/">Privacidad</a><a href="#preguntas">Preguntas frecuentes</a></nav></div><div class="footer-bottom"><span>© {new Date().getFullYear()} MeryApp</span><span>Hecho con propósito. Pensado para personas.</span><span><Icon name="android" size={16} /> Para Android</span></div></footer>
+  <script src="../scripts/interactions.ts"></script>
+</Layout>

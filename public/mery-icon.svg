@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- meryapp · concepto D6 "Abrazo / Vino" -->
+  <!-- La M-corazón (rojo, el color favorito de Mery) envuelve y protege a la persona (círculo blanco). -->
+  <rect width="1024" height="1024" fill="#2A0A10"/>
+  <path d="M250 790 V420 C250 250 420 230 490 400 L512 500 L534 400 C604 230 774 250 774 420 V790"
+        fill="none" stroke="#FF3B4E" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="512" cy="660" r="78" fill="#FFFFFF"/>
+</svg>

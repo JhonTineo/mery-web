@@ -1,0 +1,7 @@
+---
+interface Props { class?: string; }
+const heights = [8, 14, 9, 24, 16, 35, 22, 47, 30, 55, 39, 26, 43, 20, 29, 14, 19, 10, 7];
+---
+<span class:list={['voice-wave', Astro.props.class]} aria-hidden="true">
+  {heights.map((height, index) => <i style={`--bar-height:${height}px;--bar-delay:${index * 45}ms`}></i>)}
+</span>
