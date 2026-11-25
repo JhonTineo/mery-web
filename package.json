@@ -11,14 +11,19 @@
     "check": "astro check",
     "build": "astro check && astro build",
     "preview": "astro preview --host 127.0.0.1",
-    "verify": "npm run build && node scripts/verify-build.mjs"
+    "verify": "npm run test:qr && npm run build && node scripts/verify-build.mjs",
+    "test:qr": "node --test scripts/qr.test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.3.0",
-    "astro": "7.4.13"
+    "astro": "7.4.13",
+    "qrcode": "1.5.4",
+    "sharp": "0.35.5"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
+    "@types/qrcode": "1.5.6",
+    "jsqr": "1.4.0",
     "typescript": "6.0.3"
   }
 }

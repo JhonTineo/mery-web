@@ -1,0 +1,24 @@
+---
+import { getQrTarget } from '../lib/qr';
+const target = getQrTarget(Astro.url.origin);
+---
+<section class="container share-section" id="compartir" aria-labelledby="share-title">
+  <div class="share-panel">
+    <div class="share-copy"><h2 id="share-title">Visita nuestra página</h2><a class="button button-primary qr-download" href="/qr/meryapp.png" download="meryapp-qr.png">Descargar imagen <span aria-hidden="true">↓</span></a></div>
+    <figure class="qr-preview">
+      <a class="qr-image-link" href={target.url} aria-label="Visita nuestra página"><img src="/qr/meryapp.svg" width="240" height="240" loading="lazy" alt="Código QR con el icono de MeryApp en el centro" /></a>
+      <figcaption class="sr-only"><a href={target.url}>{target.url}</a></figcaption>
+    </figure>
+  </div>
+</section>
+<style>
+  .share-section { padding-bottom: 80px; }
+  .share-panel { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 50px; padding: 40px 50px; border: 1px solid #ff718526; border-radius: 20px; background: #280d17; }
+  h2 { max-width: 460px; }
+  .qr-download { margin-top: 24px; }
+  .qr-preview { width: 256px; margin: 0; }
+  .qr-image-link { display: block; padding: 8px; border-radius: 14px; background: #fff; }
+  .qr-image-link img { display: block; width: 240px; height: 240px; }
+  @media(max-width: 1024px) { .share-panel { padding: 35px; gap: 30px; } .qr-preview { width: 226px; } .qr-image-link img { width: 210px; height: 210px; } }
+  @media(max-width: 760px) { .share-section { padding-bottom: 50px; } .share-panel { grid-template-columns: 1fr; justify-items: center; padding: 30px 25px; text-align: center; } .qr-preview { width: 256px; max-width: 100%; } .qr-image-link img { width: 100%; height: auto; } h2 { font-size: 30px; } }
+</style>

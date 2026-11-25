@@ -36,6 +36,12 @@ No hace falta `@astrojs/vercel`: la página es estática. `vercel.json` declara 
 
 La página muestra “Explorar el proyecto” y avisa que no hay descarga pública. Cuando exista una versión real, configura `PUBLIC_DOWNLOAD_URL` en Vercel con una URL HTTPS pública de la APK o de su release y vuelve a desplegar. El botón y las preguntas se actualizan en la compilación. No añadas claves o datos privados a variables `PUBLIC_`.
 
+## Compartir con código QR
+
+La portada incluye un QR con el icono de Mery en el centro y descargas **PNG de 1600 × 1600** y **SVG vectorial**. Se genera al compilar, sin añadir la librería al JavaScript del visitante. Usa `PUBLIC_QR_URL`, `PUBLIC_SITE_URL` o el dominio detectado de Vercel, en ese orden. En local sin configurar muestra una vista previa identificada como local.
+
+Consulta [la guía del QR](docs/codigo-qr.md) para configurar el enlace, descargarlo, usarlo en Canva y preparar el flyer. `npm run test:qr` comprueba que los archivos reales con el icono se puedan decodificar.
+
 ## Editar contenido
 
 - `src/pages/index.astro`: secciones, textos y preguntas frecuentes.

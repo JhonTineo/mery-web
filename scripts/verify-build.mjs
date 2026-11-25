@@ -2,6 +2,8 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { resolve, join, relative, sep } from 'node:path';
 import { gzipSync } from 'node:zlib';
 import assert from 'node:assert/strict';
+import sharp from 'sharp';
+import jsQR from 'jsqr';
 
 const root = resolve('dist');
 const files = [];
@@ -54,6 +56,16 @@ assert(jsBytes > 0 && jsBytes < 12_000, `Unexpected home JS payload: ${jsBytes} 
 const fontCount = files.filter((file) => file.endsWith('.woff2')).length;
 assert.equal(fontCount, 1, 'Expected one locally hosted WOFF2 font');
 assert((await stat(join(root, 'social-card.png'))).size > 0, 'Missing social card');
+assert((await stat(join(root, 'qr', 'meryapp.svg'))).size > 0, 'Missing QR SVG');
+assert((await stat(join(root, 'qr', 'meryapp.png'))).size > 0, 'Missing QR PNG');
+const qrDestination = home.match(/<figcaption[^>]*>[\s\S]*?<a href="([^"]+)"/)?.[1]?.replaceAll('&amp;', '&');
+assert(qrDestination, 'Missing visible QR destination');
+for (const extension of ['svg', 'png']) {
+  const pixels = await sharp(join(root, 'qr', `meryapp.${extension}`)).resize(480, 480).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const decoded = jsQR(new Uint8ClampedArray(pixels.data), pixels.info.width, pixels.info.height);
+  assert.equal(decoded?.data, qrDestination, `Built QR ${extension} differs from the link shown on the page`);
+}
+console.log(`Verified branded SVG and PNG decode to the visible QR destination: ${qrDestination}`);
 console.log(`Verified ${pages.length} pages, internal anchors and local resources.`);
 console.log(`HTML home: ${gzipSync(home).length} bytes gzip; JS: ${jsBytes}; CSS: ${cssBytes}; WOFF2: ${fontCount}.`);
 console.log(`Pages: ${pages.map((page) => relative(root, page)).join(', ')}`);

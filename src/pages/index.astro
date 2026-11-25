@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import Wave from '../components/Wave.astro';
 import { mery } from '../config';
+import ShareQr from '../components/ShareQr.astro';
 
 const capabilities = [
   { icon: 'phone' as const, title: 'Más cerca de los tuyos.', description: 'Busca un contacto y pide una llamada. Mery te pregunta antes de iniciarla.', quote: '“Llama a Ana”', label: 'Llamadas y contactos' },
@@ -106,6 +107,7 @@ const faqs = [
     <section class="section container faq-section" id="preguntas" aria-labelledby="faq-title"><div class="faq-intro"><p class="section-kicker">Conoce un poco más</p><h2 id="faq-title">Es natural<br />tener preguntas.</h2><p>Aquí empieza la conversación.</p></div><div class="faq-list">{faqs.map((faq) => <details><summary>{faq.question}<span class="faq-plus"><Icon name="plus" size={20} /></span></summary><p>{faq.answer}</p></details>)}</div></section>
 
     <section class="container final-section" id="proyecto" aria-labelledby="final-title"><div class="final-cta"><img src="/mery-icon.svg" width="64" height="64" alt="" /><p class="section-kicker">Tu voz. Tu celular. Tu autonomía.</p><h2 id="final-title">Hay mucho por hacer.<br />Empieza con tu voz.</h2><p>Mery está dando sus primeros pasos.<br />Conoce el proyecto y acompaña lo que viene.</p><a class="button button-primary" href={mery.downloadUrl || mery.repository}><Icon name={mery.downloadUrl ? 'android' : 'github'} size={20} />{mery.downloadUrl ? 'Descargar para Android' : 'Explorar el proyecto'}<Icon name="arrow" size={19} /></a><span class="release-note"><span></span>{mery.downloadUrl ? 'Versión para Android' : 'En desarrollo para Android · Descarga pública próximamente'}</span></div></section>
+    <ShareQr />
   </main>
   <footer class="site-footer container"><div class="footer-main"><a class="brand" href="#inicio" aria-label="MeryApp, volver al inicio"><img src="/mery-icon.svg" width="36" height="36" alt="" /><span>Mery<span class="brand-app">App</span><span class="brand-dot">.</span></span></a><p>Una forma más tuya de usar tu celular.</p><nav aria-label="Enlaces del pie de página"><a href={mery.repository}>Proyecto en GitHub <Icon name="arrow" size={15} /></a><a href="/privacidad/">Privacidad</a><a href="#preguntas">Preguntas frecuentes</a></nav></div><div class="footer-bottom"><span>© {new Date().getFullYear()} MeryApp</span><span>Hecho con propósito. Pensado para personas.</span><span><Icon name="android" size={16} /> Para Android</span></div></footer>
   <script src="../scripts/interactions.ts"></script>
