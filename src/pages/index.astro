@@ -28,10 +28,11 @@ const faqs = [
       <nav class="desktop-nav" aria-label="Navegación principal">
         <a href="#que-hace">Qué hace</a><a href="#como-funciona">Cómo funciona</a><a href="#accesibilidad">Accesibilidad</a><a href="#preguntas">Preguntas</a>
       </nav>
-      <a class="button button-small header-cta" href="#demo">Conoce a Mery <Icon name="arrow" size={17} /></a>
+      <a class:list={['button', 'button-small', 'header-cta', { 'button-primary': Boolean(mery.downloadUrl) }]} href={mery.downloadUrl || '#demo'} aria-label={mery.downloadUrl ? 'Descargar MeryApp para Android' : 'Conoce a Mery'}><Icon name={mery.downloadUrl ? 'android' : 'arrow'} size={17} />{mery.downloadUrl ? 'Descargar' : 'Conoce a Mery'}</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú"><span></span><span></span></button>
     </div>
     <nav id="mobile-nav" class="mobile-nav" aria-label="Navegación móvil" hidden>
+      {mery.downloadUrl && <a href={mery.downloadUrl}>Descargar para Android</a>}
       <a href="#que-hace">Qué hace</a><a href="#como-funciona">Cómo funciona</a><a href="#accesibilidad">Accesibilidad</a><a href="#preguntas">Preguntas frecuentes</a><a href="#demo">Conoce a Mery</a>
     </nav>
     <noscript><style>.menu-toggle{display:none!important}@media(max-width:1024px){.mobile-nav[hidden]{display:block!important}}</style></noscript>
@@ -44,11 +45,8 @@ const faqs = [
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="availability"><span></span> Un agente de voz para Android</p>
-          <h1 id="hero-title">Di lo que<br />quieres hacer<span class="coral-dot">.</span></h1>
-          <p class="hero-description">Tu celular tiene mucho que ofrecer.<br class="desktop-break" /> Mery te ayuda a descubrirlo con tu voz.</p>
-          <p class="hero-detail">Llama, abre tus apps y resuelve lo cotidiano.<br />Pensado para una vida con más autonomía.</p>
-          <div class="hero-actions"><a class="button button-primary" href="#demo"><Icon name="play" size={19} /> Ver a Mery en acción</a><a class="text-link" href="#que-hace">Descubre qué puede hacer <Icon name="arrow" size={18} /></a></div>
-          <div class="hero-note"><Icon name="ear" size={19} /><span>Diseñado pensando en las personas ciegas.</span></div>
+          <h1 id="hero-title">Solo<br />Di lo que<br />quieres hacer<span class="coral-dot">.</span></h1>
+          <div class="hero-actions"><a class="button button-primary" href={mery.downloadUrl || '#demo'}><Icon name={mery.downloadUrl ? 'android' : 'play'} size={19} />{mery.downloadUrl ? 'Descargar para Android' : 'Ver a Mery en acción'}</a><a class="text-link" href={mery.downloadUrl ? '#demo' : '#que-hace'}>{mery.downloadUrl ? 'Ver a Mery en acción' : 'Descubre qué puede hacer'} <Icon name={mery.downloadUrl ? 'play' : 'arrow'} size={18} /></a></div>
         </div>
         <div class="phone-scene" aria-label="Vista conceptual de Mery en un celular Android">
           <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
@@ -76,10 +74,12 @@ const faqs = [
       </div>
       <div class="container integrations-strip">
         <p>Tu voz, con las apps<br /><strong>que ya conoces.</strong></p>
-        <div class="integration-item"><span class="integration-logo whatsapp"><Icon name="whatsapp" size={27} /></span><span>WhatsApp<small>Apertura de la app</small></span></div>
-        <div class="integration-item"><span class="integration-logo google" aria-hidden="true">G</span><span>Google<small>Apertura de la app</small></span></div>
-        <div class="integration-item"><span class="integration-logo youtube" aria-hidden="true"><Icon name="play" size={23} /></span><span>YouTube<small>Apertura de la app</small></span></div>
+        <div class="integration-item"><span class="integration-logo whatsapp"><Icon name="whatsapp" size={27} /></span><span>WhatsApp<small>Abre la app</small></span></div>
+        <div class="integration-item"><span class="integration-logo internet"><Icon name="internet" size={27} /></span><span>Internet<small>Búsquedas en la web</small></span></div>
+        <div class="integration-item"><span class="integration-logo youtube" aria-hidden="true"><Icon name="play" size={23} /></span><span>YouTube<small>Abre la app</small></span></div>
         <div class="integration-item"><span class="integration-logo calls"><Icon name="phone" size={26} /></span><span>Llamadas<small>Con tu confirmación</small></span></div>
+        <div class="integration-item"><span class="integration-logo messages"><Icon name="messages" size={27} /></span><span>Mensajes<small>Leer y enviar SMS</small></span></div>
+        <div class="integration-item"><span class="integration-logo clock"><Icon name="clock" size={27} /></span><span>Reloj<small>Alarmas y temporizadores</small></span></div>
       </div>
     </section>
 
